@@ -37,7 +37,7 @@ public class ThirdPersonController : MonoBehaviour
     {
         isCharacterGrounded = controller.isGrounded;
 
-        if (isCharacterGrounded && gravityForce.y < 0)
+        if (isCharacterGrounded && gravityForce.y < 1.0f)
         {
             gravityForce.y = 0;
         }
@@ -57,6 +57,7 @@ public class ThirdPersonController : MonoBehaviour
             controller.Move(rotatedMovement * speed * Time.deltaTime);
         }
 
+        // GRAVITY
         gravityForce.y += gravityValue * Time.deltaTime;
         controller.Move(gravityForce * Time.deltaTime);
     }
