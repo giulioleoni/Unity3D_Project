@@ -7,6 +7,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    public Transform cam;
     public float speed;
     public float rotSpeed;
     public CharacterController controller;
@@ -14,8 +15,6 @@ public class Player : MonoBehaviour
     private bool isCharacterGrounded;
     private float gravityValue = -9.81f;
     private Vector3 gravityForce;
-
-    public Transform cam;
 
     private int collectibles;
     [SerializeField]private TMP_Text collectiblesNumberText;
@@ -47,7 +46,7 @@ public class Player : MonoBehaviour
         Vector3 movement = new Vector3(horizontalInput, 0, verticalInput).normalized;
 
         // ROTATION
-        if (movement != Vector3.zero)
+        if (movement.magnitude >= 0.1f)
         {
             float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
             Quaternion angle = Quaternion.Euler(0, targetAngle, 0);

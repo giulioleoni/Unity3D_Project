@@ -9,8 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public List<GameObject> collectibles;
+    public int collectiblePoints;
     private int maxCollectibles;
-
     private int takenCollectibles;
     [SerializeField] private TMP_Text collectiblesNumberText;
 
