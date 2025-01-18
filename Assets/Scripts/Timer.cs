@@ -5,22 +5,23 @@ using UnityEngine;
 
 public class Timer : Singleton<Timer>
 {
-    public float timeValue;
-    public TMP_Text timeText;
+    private float timeValue;
+    [SerializeField] private TMP_Text timeText;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        timeValue = 120;
     }
 
     // Update is called once per frame
     void Update()
     {
-        timeValue = Time.timeSinceLevelLoad;
+        //timeValue = Time.timeSinceLevelLoad;
+        timeValue -= Time.deltaTime;
         int minutes = (int)(timeValue / 60);
         int seconds = (int)(timeValue % 60);
 
-        timeText.text = minutes + ": " + seconds;
+        timeText.text = minutes + ":" + seconds;
     }
 }
