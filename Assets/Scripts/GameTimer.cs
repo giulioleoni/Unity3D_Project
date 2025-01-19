@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Timer : Singleton<Timer>
+public class GameTimer : Singleton<GameTimer>
 {
     [HideInInspector] public float GameTime { get { return gameTime; } private set { gameTime = value; } }
     [Header("Insert GameTime in seconds")]
@@ -18,7 +18,7 @@ public class Timer : Singleton<Timer>
 
         if (gameTime <= 0)
         {
-            SceneManager.LoadScene(2);
+            GameManager.Instance.LoadGameEndScene();
         }
 
         int minutes = (int)(gameTime / 60);

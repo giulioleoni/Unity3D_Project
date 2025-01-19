@@ -429,6 +429,7 @@ GameObject:
   - component: {fileID: 685732731}
   - component: {fileID: 685732733}
   - component: {fileID: 685732732}
+  - component: {fileID: 685732734}
   m_Layer: 5
   m_Name: PointsValueText
   m_TagString: Untagged
@@ -485,8 +486,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -553,6 +554,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 685732730}
   m_CullTransparentMesh: 1
+--- !u!114 &685732734
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 685732730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e011c548176e520478b7be2102b5e29d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PointsValueText: {fileID: 685732732}
 --- !u!1 &790646361
 GameObject:
   m_ObjectHideFlags: 0
@@ -1233,8 +1247,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190080
-  m_fontColor: {r: 0, g: 0, b: 0, a: 1}
+    rgba: 4281479730
+  m_fontColor: {r: 0.19607845, g: 0.19607845, b: 0.19607845, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:

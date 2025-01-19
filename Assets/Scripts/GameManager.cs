@@ -9,7 +9,7 @@ public class GameManager : Singleton<GameManager>
 {
     private int maxPoints;
     private int totalPoints;
-    private Timer timer;
+    private GameTimer gameTimer;
     [SerializeField] private List<GameObject> collectibles;
     [SerializeField] private int collectiblePoints;
     [SerializeField] private TMP_Text collectiblesNumberText;
@@ -19,11 +19,7 @@ public class GameManager : Singleton<GameManager>
     {
         maxPoints = collectibles.Count * collectiblePoints;
         Cursor.lockState = CursorLockMode.Locked;
-        timer = GetComponent<Timer>();
-        if (timer != null )
-        {
-            Debug.Log("Timer non è nullo");
-        }
+        gameTimer = GetComponent<GameTimer>();
     }
 
     // Start is called before the first frame update
@@ -51,6 +47,7 @@ public class GameManager : Singleton<GameManager>
     {
         collectibles.Remove(collectible);
         Destroy(collectible);
+
         totalPoints += collectiblePoints;
         collectiblesNumberText.text = totalPoints.ToString();
 
@@ -62,7 +59,15 @@ public class GameManager : Singleton<GameManager>
 
     public void LoadGameEndScene()
     {
-        totalPoints *= (int)(timer.GameTime * 2);
+        if (gameTimer.GameTime <= 0)
+        {
+            totalPoints = 0;
+        }
+        else
+        {
+            totalPoints += (int)(gameTimer.GameTime * 3);
+        }
+
         PlayerPrefs.SetInt("Points", totalPoints);
         Cursor.lockState = CursorLockMode.Confined;
         SceneLoader.Instance.LoadNextScene(SceneManager.loadedSceneCount + 1);
