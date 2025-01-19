@@ -1,58 +1,72 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameManager : MonoBehaviour
+public class GameManager : Singleton<GameManager>
 {
-    public static GameManager Instance;
-
-    public List<GameObject> collectibles;
-    public int collectiblePoints;
-    private int maxCollectibles;
-    private int takenCollectibles;
+    private int maxPoints;
+    private int totalPoints;
+    private Timer timer;
+    [SerializeField] private List<GameObject> collectibles;
+    [SerializeField] private int collectiblePoints;
     [SerializeField] private TMP_Text collectiblesNumberText;
+    [SerializeField] private Vector3 rotationSpeed;
 
     private void Awake()
     {
-        Instance = this;
+        maxPoints = collectibles.Count * collectiblePoints;
+        Cursor.lockState = CursorLockMode.Locked;
+        timer = GetComponent<Timer>();
+        if (timer != null )
+        {
+            Debug.Log("Timer non è nullo");
+        }
     }
 
     // Start is called before the first frame update
     void Start()
     {
-        maxCollectibles = collectibles.Count;
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
+
     }
 
     private void FixedUpdate()
     {
-        for (int i = 0; i < maxCollectibles; i++) 
+        for (int i = 0; i < collectibles.Count; i++)
         {
-            if (collectibles[i] != null)
-            {
-                collectibles[i].transform.Rotate(2, 2, 0, Space.World);
-            }
-            
+            collectibles[i].transform.Rotate(rotationSpeed, Space.World);
         }
     }
 
     public void PickUpCollectible(GameObject collectible)
     {
+        collectibles.Remove(collectible);
         Destroy(collectible);
-        takenCollectibles++;
-        collectiblesNumberText.text = takenCollectibles.ToString();
+        totalPoints += collectiblePoints;
+        collectiblesNumberText.text = totalPoints.ToString();
 
-        if(takenCollectibles >= maxCollectibles ) 
+        if(totalPoints >= maxPoints) 
         {
-            SceneManager.LoadScene(2);
+            LoadGameEndScene();
         }
+    }
+
+    public void LoadGameEndScene()
+    {
+        totalPoints *= (int)(timer.GameTime * 2);
+        PlayerPrefs.SetInt("Points", totalPoints);
+        Cursor.lockState = CursorLockMode.Confined;
+        SceneLoader.Instance.LoadNextScene(SceneManager.loadedSceneCount + 1);
+        //SceneManager.LoadScene(2);
     }
 
 }

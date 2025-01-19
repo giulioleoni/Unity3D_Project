@@ -5,15 +5,16 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-public class ButtonBehavior : MonoBehaviour
+public class ButtonStart : MonoBehaviour
 {
-    public Button myButton;
-    public UnityAction myAction;
-    public int sceneIndex;
+    private Button myButton;
+    private UnityAction myAction;
+    [SerializeField] private int sceneIndex;
 
     // Start is called before the first frame update
     void Start()
     {
+        myButton = GetComponent<Button>();
         myAction += LoadSceneOfTheTransporter;
         myButton.onClick.AddListener(CallAction);
     }
@@ -31,6 +32,6 @@ public class ButtonBehavior : MonoBehaviour
 
     public void LoadSceneOfTheTransporter()
     {
-        Transporter.Instance.LoadNextScene(sceneIndex);
+        SceneLoader.Instance.LoadNextScene(sceneIndex);
     }
 }

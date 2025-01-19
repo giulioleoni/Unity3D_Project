@@ -7,11 +7,13 @@ using UnityEngine.UI;
 
 public class ButtonQuit : MonoBehaviour
 {
-    public Button myButton;
-    public UnityAction myAction;
+    private Button myButton;
+    private UnityAction myAction;
+
     // Start is called before the first frame update
     void Start()
     {
+        myButton = GetComponent<Button>();
         myAction += TransporterQuitGame;
         myButton.onClick.AddListener(CallAction);
     }
@@ -29,6 +31,6 @@ public class ButtonQuit : MonoBehaviour
 
     public void TransporterQuitGame()
     {
-        Transporter.Instance.QuitGame();
+        SceneLoader.Instance.QuitGame();
     }
 }
