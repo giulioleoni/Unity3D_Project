@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     private GameTimer gameTimer;
     [SerializeField] private List<GameObject> collectibles;
     [SerializeField] private int collectiblePoints;
-    [SerializeField] private TMP_Text collectiblesNumberText;
+    [SerializeField] private TMP_Text collectiblesCountText;
     [SerializeField] private Vector3 rotationSpeed;
 
     private void Awake()
@@ -49,7 +49,7 @@ public class GameManager : Singleton<GameManager>
         Destroy(collectible);
 
         totalPoints += collectiblePoints;
-        collectiblesNumberText.text = totalPoints.ToString();
+        collectiblesCountText.text = totalPoints.ToString();
 
         if(totalPoints >= maxPoints) 
         {

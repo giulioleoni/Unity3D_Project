@@ -8,14 +8,17 @@ using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-    [SerializeField] private AudioMixer master;
+    //[SerializeField] private AudioMixer master;
+    [SerializeField] private TMP_Text volumeValueText;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
-    private Resolution[] resolutions;
+    private List<Resolution> resolutions;
 
 
     private void Start()
     {
-        resolutions = new Resolution[Screen.resolutions.Length];
+        Screen.SetResolution(1920, 1080, true);
+
+        resolutions = new List<Resolution>();
 
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
@@ -28,7 +31,7 @@ public class SettingsMenu : MonoBehaviour
                 }
             }
 
-            resolutions[i] = Screen.resolutions[i];
+            resolutions.Add(Screen.resolutions[i]);
         }
 
         resolutionDropdown.ClearOptions();
@@ -36,17 +39,17 @@ public class SettingsMenu : MonoBehaviour
 
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Count; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && 
+            if (resolutions[i].width == Screen.currentResolution.width &&
                 resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
-        } 
+        }
 
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
@@ -55,7 +58,10 @@ public class SettingsMenu : MonoBehaviour
 
     public void SetGameVolume(float volume)
     {
-        master.SetFloat("MasterVolume", volume);
+        //master.SetFloat("MasterVolume", volume);
+        AudioListener.volume = volume;
+        volumeValueText.text = volume.ToString("0.0");
+        PlayerPrefs.SetFloat("GameVolume", volume);
     }
 
     public void SetGraphicsQuality(int qualityIndex)
