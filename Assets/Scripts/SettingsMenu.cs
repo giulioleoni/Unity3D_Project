@@ -11,13 +11,55 @@ public class SettingsMenu : MonoBehaviour
     //[SerializeField] private AudioMixer master;
     [SerializeField] private TMP_Text volumeValueText;
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private Toggle fullScreenToggle;
     private List<Resolution> resolutions;
 
+    private void Awake()
+    {
+        
+    }
 
     private void Start()
     {
-        Screen.SetResolution(1920, 1080, true);
+        int screenWidth = PlayerPrefs.GetInt("ScreenWidth");
+        int screenHeight = PlayerPrefs.GetInt("ScreenHeight");
+        Debug.Log(screenHeight);
+        Debug.Log(screenWidth);
 
+        Screen.SetResolution(screenWidth, screenHeight, Screen.fullScreen);
+        fullScreenToggle.isOn = Screen.fullScreen;
+
+        SetResolutionDropDown();
+    }
+
+    public void SetGameVolume(float volume)
+    {
+        //master.SetFloat("MasterVolume", volume);
+        AudioListener.volume = volume;
+        volumeValueText.text = volume.ToString("0.0");
+        PlayerPrefs.SetFloat("GameVolume", volume);
+    }
+
+    public void SetGraphicsQuality(int qualityIndex)
+    {
+        QualitySettings.SetQualityLevel(qualityIndex);
+    }
+
+    public void ToggleFullScreen(bool isFullScreen)
+    {
+        Screen.fullScreen = isFullScreen;
+    }
+
+    public void SetScreenResolution(int resolutionIndex)
+    {
+        Resolution targetResolution = resolutions[resolutionIndex];
+        Screen.SetResolution(targetResolution.width, targetResolution.height, Screen.fullScreen);
+        PlayerPrefs.SetInt("ScreenWidth", targetResolution.width);
+        PlayerPrefs.SetInt("ScreenHeight", targetResolution.height);
+    }
+
+    public void SetResolutionDropDown()
+    {
         resolutions = new List<Resolution>();
 
         for (int i = 0; i < Screen.resolutions.Length; i++)
@@ -54,29 +96,5 @@ public class SettingsMenu : MonoBehaviour
         resolutionDropdown.AddOptions(options);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
-    }
-
-    public void SetGameVolume(float volume)
-    {
-        //master.SetFloat("MasterVolume", volume);
-        AudioListener.volume = volume;
-        volumeValueText.text = volume.ToString("0.0");
-        PlayerPrefs.SetFloat("GameVolume", volume);
-    }
-
-    public void SetGraphicsQuality(int qualityIndex)
-    {
-        QualitySettings.SetQualityLevel(qualityIndex);
-    }
-
-    public void ToggleFullScreen(bool isFullScreen)
-    {
-        Screen.fullScreen = isFullScreen;
-    }
-
-    public void SetScreenResolution(int resolutionIndex)
-    {
-        Resolution targetResolution = resolutions[resolutionIndex];
-        Screen.SetResolution(targetResolution.width, targetResolution.height, Screen.fullScreen);
     }
 }
