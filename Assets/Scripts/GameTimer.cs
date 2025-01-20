@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class GameTimer : Singleton<GameTimer>
+public class GameTimer : MonoBehaviour
 {
     [HideInInspector] public float GameTime { get { return gameTime; } private set { gameTime = value; } }
     [Header("Insert GameTime in seconds")]

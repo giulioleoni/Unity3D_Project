@@ -7,16 +7,13 @@ using UnityEngine.UI;
 
 public class ButtonStart : MonoBehaviour
 {
-    private Button myButton;
-    private UnityAction myAction;
     [SerializeField] private int sceneIndex;
 
     // Start is called before the first frame update
     void Start()
     {
-        myButton = GetComponent<Button>();
-        myAction += LoadSceneOfTheTransporter;
-        myButton.onClick.AddListener(CallAction);
+        Button myButton = GetComponent<Button>();
+        myButton.onClick.AddListener(LoadScene);
     }
 
     // Update is called once per frame
@@ -25,12 +22,7 @@ public class ButtonStart : MonoBehaviour
         
     }
 
-    public void CallAction()
-    {
-        myAction();
-    }
-
-    public void LoadSceneOfTheTransporter()
+    public void LoadScene()
     {
         SceneLoader.Instance.LoadNextScene(sceneIndex);
     }

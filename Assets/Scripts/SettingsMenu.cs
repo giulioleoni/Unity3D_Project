@@ -8,13 +8,14 @@ using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-    public AudioMixer master;
-    private List<Resolution> resolutions;
-    public TMP_Dropdown resolutionDropdown;
+    [SerializeField] private AudioMixer master;
+    [SerializeField] private TMP_Dropdown resolutionDropdown;
+    private Resolution[] resolutions;
+
 
     private void Start()
     {
-        resolutions = new List<Resolution>();
+        resolutions = new Resolution[Screen.resolutions.Length];
 
         for (int i = 0; i < Screen.resolutions.Length; i++)
         {
@@ -27,7 +28,7 @@ public class SettingsMenu : MonoBehaviour
                 }
             }
 
-            resolutions.Add(Screen.resolutions[i]);
+            resolutions[i] = Screen.resolutions[i];
         }
 
         resolutionDropdown.ClearOptions();
@@ -35,7 +36,7 @@ public class SettingsMenu : MonoBehaviour
 
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Count; i++)
+        for (int i = 0; i < resolutions.Length; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
