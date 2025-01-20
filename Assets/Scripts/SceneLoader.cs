@@ -18,7 +18,7 @@ public class SceneLoader : Singleton<SceneLoader>
 
     public void QuitGame()
     {
-        EditorApplication.isPlaying = false;
-        //Application.Quit();
+        //EditorApplication.isPlaying = false;
+        Application.Quit();
     }
 }

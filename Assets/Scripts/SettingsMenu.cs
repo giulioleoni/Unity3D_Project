@@ -9,24 +9,39 @@ using TMPro;
 public class SettingsMenu : MonoBehaviour
 {
     public AudioMixer master;
-    Resolution[] resolutions;
+    private List<Resolution> resolutions;
     public TMP_Dropdown resolutionDropdown;
 
-    private void Awake()
+    private void Start()
     {
-        resolutions = Screen.resolutions;
+        resolutions = new List<Resolution>();
+
+        for (int i = 0; i < Screen.resolutions.Length; i++)
+        {
+            if (i > 0)
+            {
+                if (Screen.resolutions[i].width == Screen.resolutions[i - 1].width &&
+                    Screen.resolutions[i].height == Screen.resolutions[i - 1].height)
+                {
+                    continue;
+                }
+            }
+
+            resolutions.Add(Screen.resolutions[i]);
+        }
 
         resolutionDropdown.ClearOptions();
         List<string> options = new List<string>();
 
         int currentResolutionIndex = 0;
 
-        for (int i = 0; i < resolutions.Length; i++)
+        for (int i = 0; i < resolutions.Count; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
             options.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.currentResolution.width && 
+                resolutions[i].height == Screen.currentResolution.height)
             {
                 currentResolutionIndex = i;
             }
