@@ -8,33 +8,70 @@ using TMPro;
 
 public class SettingsMenu : MonoBehaviour
 {
-    //[SerializeField] private AudioMixer master;
+    [Header("VolumeSettings")]
+    [SerializeField] private AudioMixer master;
     [SerializeField] private TMP_Text volumeValueText;
+    [SerializeField] private Slider volumeSlider;
+
+    [Header("Screen settings")]
     [SerializeField] private TMP_Dropdown resolutionDropdown;
+    [SerializeField] private TMP_Dropdown qualityDropdown;
     [SerializeField] private Toggle fullScreenToggle;
     private List<Resolution> resolutions;
+    //private bool fullScreen;
+    //private int quality;
+
 
     private void Awake()
     {
-        
+        if (PlayerPrefs.HasKey("GameVolume"))
+        {
+            float volume = PlayerPrefs.GetFloat("GameVolume");
+            AudioListener.volume = volume;
+            volumeValueText.text = volume.ToString("0.0");
+            volumeSlider.value = volume;
+        }
+
+        if (PlayerPrefs.HasKey("GameQuality"))
+        {
+            int qualityIndex = PlayerPrefs.GetInt("GameQuality");
+            QualitySettings.SetQualityLevel(qualityIndex);
+            qualityDropdown.value = qualityIndex;
+        }
+
+        if (PlayerPrefs.HasKey("FullScreen"))
+        {
+            int fullScreen = PlayerPrefs.GetInt("GameQuality");
+
+            Screen.fullScreen = fullScreen == 1 ? true : false;
+            fullScreenToggle.isOn = Screen.fullScreen; 
+        }
+
+
+        if (PlayerPrefs.HasKey("ScreenWidth") && (PlayerPrefs.HasKey("ScreenHeight")))
+        {
+            int width = PlayerPrefs.GetInt("ScreenWidth");
+            int height = PlayerPrefs.GetInt("ScreenHeight");
+            Debug.Log(width + " x " + height);
+
+            Screen.SetResolution(width, height, Screen.fullScreen);
+        }
+
+
     }
 
     private void Start()
     {
-        int screenWidth = PlayerPrefs.GetInt("ScreenWidth");
-        int screenHeight = PlayerPrefs.GetInt("ScreenHeight");
-        Debug.Log(screenHeight);
-        Debug.Log(screenWidth);
-
-        Screen.SetResolution(screenWidth, screenHeight, Screen.fullScreen);
-        fullScreenToggle.isOn = Screen.fullScreen;
 
         SetResolutionDropDown();
+        Debug.Log(Screen.fullScreen);
     }
 
     public void SetGameVolume(float volume)
     {
-        //master.SetFloat("MasterVolume", volume);
+        //float newVolume = (-30 + (volume * 30));
+        //Debug.Log(newVolume);
+        //master.SetFloat("MasterVolume", newVolume);
         AudioListener.volume = volume;
         volumeValueText.text = volume.ToString("0.0");
         PlayerPrefs.SetFloat("GameVolume", volume);
@@ -43,11 +80,14 @@ public class SettingsMenu : MonoBehaviour
     public void SetGraphicsQuality(int qualityIndex)
     {
         QualitySettings.SetQualityLevel(qualityIndex);
+        PlayerPrefs.SetInt("GameQuality", qualityIndex);
     }
 
     public void ToggleFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+        PlayerPrefs.SetInt("FullScreen", (isFullScreen ? 1 : 0));
+
     }
 
     public void SetScreenResolution(int resolutionIndex)
@@ -77,23 +117,23 @@ public class SettingsMenu : MonoBehaviour
         }
 
         resolutionDropdown.ClearOptions();
-        List<string> options = new List<string>();
+        List<string> resolutionOptions = new List<string>();
 
         int currentResolutionIndex = 0;
 
         for (int i = 0; i < resolutions.Count; i++)
         {
             string option = resolutions[i].width + " x " + resolutions[i].height;
-            options.Add(option);
+            resolutionOptions.Add(option);
 
-            if (resolutions[i].width == Screen.currentResolution.width &&
-                resolutions[i].height == Screen.currentResolution.height)
+            if (resolutions[i].width == Screen.width &&
+                resolutions[i].height == Screen.height)
             {
                 currentResolutionIndex = i;
             }
         }
 
-        resolutionDropdown.AddOptions(options);
+        resolutionDropdown.AddOptions(resolutionOptions);
         resolutionDropdown.value = currentResolutionIndex;
         resolutionDropdown.RefreshShownValue();
     }
