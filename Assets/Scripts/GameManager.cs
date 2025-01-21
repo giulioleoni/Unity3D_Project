@@ -1,13 +1,13 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    private int maxPoints;
     private int totalPoints;
     private GameTimer gameTimer;
     [SerializeField] private List<GameObject> collectibles;
@@ -17,7 +17,6 @@ public class GameManager : Singleton<GameManager>
 
     private void Awake()
     {
-        maxPoints = collectibles.Count * collectiblePoints;
         Cursor.lockState = CursorLockMode.Locked;
         gameTimer = GetComponent<GameTimer>();
     }
@@ -39,7 +38,8 @@ public class GameManager : Singleton<GameManager>
     {
         for (int i = 0; i < collectibles.Count; i++)
         {
-            collectibles[i].transform.Rotate(rotationSpeed, Space.World);
+            Transform meshTransform = collectibles[i].transform.GetChild(0);
+            meshTransform.Rotate(rotationSpeed, Space.World);
         }
     }
 
