@@ -12,7 +12,7 @@ public class GameManager : Singleton<GameManager>
     private GameTimer gameTimer;
     [SerializeField] private List<GameObject> collectibles;
     [SerializeField] private int collectiblePoints;
-    [SerializeField] private TMP_Text collectiblesCountText;
+    [SerializeField] private TMP_Text pointsValueText;
     [SerializeField] private Vector3 rotationSpeed;
 
     private void Awake()
@@ -49,9 +49,9 @@ public class GameManager : Singleton<GameManager>
         Destroy(collectible);
 
         totalPoints += collectiblePoints;
-        collectiblesCountText.text = totalPoints.ToString();
+        pointsValueText.text = totalPoints.ToString();
 
-        if(totalPoints >= maxPoints) 
+        if(collectibles.Count <= 0) 
         {
             LoadGameEndScene();
         }
@@ -70,8 +70,7 @@ public class GameManager : Singleton<GameManager>
 
         PlayerPrefs.SetInt("Points", totalPoints);
         Cursor.lockState = CursorLockMode.Confined;
-        SceneLoader.Instance.LoadNextScene(SceneManager.loadedSceneCount + 1);
-        //SceneManager.LoadScene(2);
+        SceneManager.LoadScene(SceneManager.loadedSceneCount + 1);
     }
 
 }

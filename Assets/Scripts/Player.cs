@@ -19,18 +19,12 @@ public class Player : MonoBehaviour
     private int collectibles;
     [SerializeField]private TMP_Text collectiblesNumberText;
 
-    //public float points;
-    //private float keyValue = 15;
-    //private float moneyValue = 50;
-    //private float pointsBasedOnTime = 1500;
 
-    // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
         isCharacterGrounded = controller.isGrounded;
@@ -55,58 +49,12 @@ public class Player : MonoBehaviour
             controller.Move(rotatedMovement * speed * Time.deltaTime);
         }
 
-        // GRAVITY
+        ApplyGravity();
+    }
+    
+    private void ApplyGravity()
+    {
         gravityForce.y += gravityValue * Time.deltaTime;
         controller.Move(gravityForce * Time.deltaTime);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        //if (other.CompareTag("Collectible"))
-        //{
-        //    Destroy(other.gameObject);
-        //    collectibles++;
-        //    collectiblesNumberText.text = collectibles.ToString();
-        //}
-
-        //if (other.CompareTag("Key"))
-        //{
-        //    Destroy(other.gameObject);
-        //    keys++;
-        //    keyText.text = keys.ToString();
-        //}
-
-        //if (other.CompareTag("Door") && keys > 0)
-        //{
-        //    other.GetComponent<DoorBehavior>().activated = true;
-        //    other.GetComponent<DoorBehavior>().Open();
-        //    keys--;
-        //    keyText.text = keys.ToString();
-        //}
-
-        //if (other.CompareTag("Grail"))
-        //{
-        //    CalculatePoints();
-        //    Transporter.Instance.LoadNextScene(2);
-        //}
-    }
-
-    private void CalculatePoints()
-    {
-        //if (keys > 0)
-        //{
-        //    points += keys * keyValue;
-        //}
-
-        //if (moneys > 0)
-        //{
-        //    points += moneys * moneyValue;
-        //}
-
-        //float timePoints = Mathf.Clamp(pointsBasedOnTime - Timer.Instance.timeValue, 0, 1000);
-        
-        //points += timePoints;
-        
-        //Transporter.Instance.playerPoints = points;
     }
 }
