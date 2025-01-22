@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1362135224590278243}
   - component: {fileID: 1362135224590278240}
   - component: {fileID: 1362135224590278225}
+  - component: {fileID: 6368986958884354125}
   m_Layer: 6
   m_Name: Player 1
   m_TagString: Player
@@ -152,8 +153,40 @@ MonoBehaviour:
   speed: 8
   rotSpeed: 10
   controller: {fileID: 1362135224590278240}
-  cam: {fileID: 0}
-  collectiblesNumberText: {fileID: 0}
+--- !u!114 &6368986958884354125
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1362135224590278254}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: a77f7070380033445aeabca0715182eb, type: 3}
+  m_NotificationBehavior: 2
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents:
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: bbac513c-6a3e-43ad-9bd7-4c2ce409e116
+    m_ActionName: Default/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Default
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
 --- !u!1 &1362135224596117525
 GameObject:
   m_ObjectHideFlags: 0
@@ -432,7 +465,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684187288751}
-  m_LocalRotation: {x: 0.058520917, y: 0.0000000016085916, z: -9.429787e-11, w: 0.9982862}
+  m_LocalRotation: {x: 0.058520913, y: -0.0000000021471116, z: 1.2586666e-10, w: 0.9982862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -638,7 +671,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684702286309}
-  m_LocalRotation: {x: 0.058520913, y: -0.0000000021115094, z: 1.2377958e-10, w: 0.9982862}
+  m_LocalRotation: {x: 0.058520913, y: 0.0000000021471116, z: -1.2586666e-10, w: 0.9982862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -717,7 +750,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684706897983}
-  m_LocalRotation: {x: 0.058520913, y: 0.0000000022192161, z: -1.3009352e-10, w: 0.9982862}
+  m_LocalRotation: {x: 0.058520913, y: -0.0000000021471116, z: 1.2586666e-10, w: 0.9982862}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
