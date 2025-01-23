@@ -1,13 +1,10 @@
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameTimer : MonoBehaviour
 {
     [HideInInspector] public float GameTime { get { return gameTime; } private set { gameTime = value; } }
-    [Header("Insert GameTime in seconds")]
+    [Tooltip("Insert game time in seconds")]
     [SerializeField] private float gameTime;
     [SerializeField] private TMP_Text timeText;
 

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using TMPro;
-using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine;
 
 public class GameManager : Singleton<GameManager>
 {
@@ -12,31 +12,20 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private TMP_Text pointsValueText;
     [SerializeField] private Vector3 rotationSpeed;
 
-    private void Awake()
+    // Start is called before the first frame update
+    void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
         gameTimer = GetComponent<GameTimer>();
     }
 
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
     // Update is called once per frame
     void Update()
-    {
-
-
-    }
-
-    private void FixedUpdate()
     {
         for (int i = 0; i < collectibles.Count; i++)
         {
             Transform meshTransform = collectibles[i].transform.GetChild(0);
-            meshTransform.Rotate(rotationSpeed, Space.World);
+            meshTransform.Rotate(rotationSpeed * Time.deltaTime, Space.World);
         }
     }
 

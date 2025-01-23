@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.Audio;
 using UnityEngine.UI;
 using TMPro;
@@ -8,7 +6,6 @@ using UnityEngine;
 public class VolumeSettings : MonoBehaviour
 {
     [SerializeField] private AudioMixer master;
-    [SerializeField] private TMP_Text volumeValueText;
     [SerializeField] private Slider volumeSlider;
 
 

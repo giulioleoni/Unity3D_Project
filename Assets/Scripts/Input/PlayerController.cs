@@ -7,22 +7,20 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     private Transform cam;
-    private bool isCharacterGrounded;
     private float gravityValue = -9.81f;
-    private Vector3 gravityForce;
     private Vector3 movement;
 
     private PlayerInput playerInput;
-    private InputAction MoveAction;
+    private InputAction moveAction;
 
     [SerializeField] private float speed;
-    [SerializeField] private float rotSpeed;
+    [SerializeField] private float playerRotationSpeed;
     [SerializeField] private CharacterController controller;
 
     private void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
-        MoveAction = playerInput.actions["Move"];
+        moveAction = playerInput.actions["Move"];
     }
 
     void Start()
@@ -32,13 +30,9 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        isCharacterGrounded = controller.isGrounded;
-
-        if (isCharacterGrounded && movement.y < 1.0f)
+        if (controller.isGrounded && movement.y < 0)
         {
             movement.y = 0;
-            Debug.Log("GROUNDED");
-
         }
 
         MovementDirection();
@@ -55,7 +49,7 @@ public class PlayerController : MonoBehaviour
 
     private void MovementDirection()
     {
-        Vector2 newMovement = MoveAction.ReadValue<Vector2>();
+        Vector2 newMovement = moveAction.ReadValue<Vector2>();
         movement.x = newMovement.x;
         movement.z = newMovement.y;
     }
@@ -64,7 +58,7 @@ public class PlayerController : MonoBehaviour
     {
         float targetAngle = Mathf.Atan2(movement.x, movement.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
         Quaternion angle = Quaternion.Euler(0, targetAngle, 0);
-        transform.rotation = Quaternion.Slerp(transform.rotation, angle, rotSpeed * Time.deltaTime);
+        transform.rotation = Quaternion.Slerp(transform.rotation, angle, playerRotationSpeed * Time.deltaTime);
         movement = angle * Vector3.forward;
     }
 
