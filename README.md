@@ -8,6 +8,6 @@ Una volta scaricato e avviato su Unity per buildarlo è necessario andatre su fi
 
 Il personaggio si muoverà usando WASD e la telecamera è controllata con il movimento del mouse 
 
-Lascio anche un link al Google Drive con la build del [progetto](https://drive.google.com/drive/folders/1B6He3lBuB-GKOZV69rdQfUQSRSBRGDBd?usp=sharing)
+Lascio anche un link al Google Drive con la build del [progetto](https://drive.google.com/drive/folders/1oSqhF3uDF9dZo3Vh0bSHSgygAzVAfD4r?usp=sharing)
 
 
