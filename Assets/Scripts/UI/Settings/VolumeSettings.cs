@@ -1,6 +1,5 @@
 using UnityEngine.Audio;
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine;
 
 public class VolumeSettings : MonoBehaviour

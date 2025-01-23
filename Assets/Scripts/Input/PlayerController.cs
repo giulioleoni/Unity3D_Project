@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
             Rotate();
         }
 
-        movement.y += gravityValue;
+        movement.y +=  gravityValue;
 
         controller.Move(movement * speed * Time.deltaTime);
     }
