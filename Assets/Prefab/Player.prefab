@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 10
-  playerRotationSpeed: 0
+  playerRotationSpeed: 10
   controller: {fileID: 1362135224590278240}
 --- !u!114 &6368986958884354125
 MonoBehaviour:
@@ -182,6 +182,10 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: bbac513c-6a3e-43ad-9bd7-4c2ce409e116
     m_ActionName: Default/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: cdd26c09-c941-4827-8834-df87232ecd4c
+    m_ActionName: Default/MouseLookAround[/Mouse/delta]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Default
@@ -281,6 +285,7 @@ GameObject:
   - component: {fileID: 6951447683709688858}
   - component: {fileID: 6951447683709688859}
   - component: {fileID: 6951447683709688861}
+  - component: {fileID: 159546617025982711}
   m_Layer: 0
   m_Name: FreeLook Camera
   m_TagString: Untagged
@@ -296,7 +301,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447683709688856}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.9999999, z: -8.5}
+  m_LocalPosition: {x: 0, y: 1.29, z: -8.85}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -348,7 +353,7 @@ MonoBehaviour:
   m_YAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 6
+    m_MaxSpeed: 4
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse Y
@@ -372,7 +377,7 @@ MonoBehaviour:
   m_XAxis:
     Value: 0
     m_SpeedMode: 0
-    m_MaxSpeed: 460
+    m_MaxSpeed: 180
     m_AccelTime: 0.1
     m_DecelTime: 0.1
     m_InputAxisName: Mouse X
@@ -441,6 +446,22 @@ MonoBehaviour:
   m_Damping: 0
   m_DampingWhenOccluded: 0.05
   m_OptimalTargetDistance: 0
+--- !u!114 &159546617025982711
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6951447683709688856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  PlayerIndex: -1
+  AutoEnableInputs: 1
+  XYAxis: {fileID: 8815160164055562267, guid: a77f7070380033445aeabca0715182eb, type: 3}
+  ZAxis: {fileID: 0}
 --- !u!1 &6951447684187288751
 GameObject:
   m_ObjectHideFlags: 3
@@ -465,8 +486,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684187288751}
-  m_LocalRotation: {x: 0.05852091, y: 0.0000000021471116, z: -1.2586665e-10, w: 0.9982862}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.05852092, y: -0.00000002975125, z: 0.0000000017440593, w: 0.9982862}
+  m_LocalPosition: {x: 0, y: -0.28999996, z: 0.35000038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -671,8 +692,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684702286309}
-  m_LocalRotation: {x: 0.05852091, y: -0.0000000021471116, z: 1.2586665e-10, w: 0.9982862}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.058520917, y: 0.000000018387281, z: -0.0000000010778878, w: 0.9982862}
+  m_LocalPosition: {x: 0, y: -0.28999996, z: 0.35000038}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -750,7 +771,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6951447684706897983}
-  m_LocalRotation: {x: 0.05852091, y: -0.0000000021471116, z: 1.2586665e-10, w: 0.9982862}
+  m_LocalRotation: {x: 0.07230851, y: -8.7887863e-16, z: 3.484681e-17, w: 0.99738234}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

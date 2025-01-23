@@ -1,5 +1,5 @@
 {
-    "name": "PlayerControl",
+    "name": "PlayerInputs",
     "maps": [
         {
             "name": "Default",
@@ -9,6 +9,15 @@
                     "name": "Move",
                     "type": "Value",
                     "id": "bbac513c-6a3e-43ad-9bd7-4c2ce409e116",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": true
+                },
+                {
+                    "name": "MouseLookAround",
+                    "type": "Value",
+                    "id": "cdd26c09-c941-4827-8834-df87232ecd4c",
                     "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
@@ -70,6 +79,17 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
+                },
+                {
+                    "name": "",
+                    "id": "408d5ebb-428f-45ca-805f-63deb20e5ae6",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "MouseLookAround",
+                    "isComposite": false,
+                    "isPartOfComposite": false
                 }
             ]
         }
